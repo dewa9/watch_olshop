@@ -63,11 +63,8 @@
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="fa fa-clone"></i>Merk <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                      <li><a href="{{url('/merk/addmerk')}}">Add</a></li>
-                      <li><a href="#">Show</a></li>
-                    </ul>
+                  <li><a href="{{url('/merk/addmerk')}}"><i class="fa fa-clone"></i>Merk </a>
+                      
                   </li>
                   <li><a><i class="fa fa-table"></i> Product <span class="fa fa-chevron-down"></span></a>
                        <ul class="nav child_menu">

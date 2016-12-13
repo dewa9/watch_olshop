@@ -42,7 +42,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Merk Jam Tangan 
                         </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                         
+                         <input type="hidden" name="id" id="id-merk" />
                           <input class="form-control col-md-7 col-xs-12"  id="merk" name="merek"  required="required" type="text">
                         </div>
                       </div>
@@ -135,6 +135,35 @@
                   cell.innerHTML = i+1;
               } );
           } ).draw();
+		  
+		  
+	var sbody = $('#datatable-merk tbody');
+		sbody.on('click','.edit',function(){
+			var data = gentable.row($(this).parents('tr')).data();
+			$('#form-merk').trigger('reset');
+			$('#merk').val(data.merek);
+			$('#id-merk').val(data.id);
+		}).
+		on('click','.delete',function(){
+			var data = gentable.row($(this).parents('tr')).data();
+			alertify.confirm("Konfirmasi","Anda Yakin Ingin menghapus data?", function (e) {
+				if (e) {
+					$.post("/home/deletekelas",{'id':data.idkelas,_token:$('#token').val()},function(data,status){
+							if(parseInt(data.return)==1){
+								alertify.success('Data berhasil dihapus');
+								gentable.ajax.reload();
+							}else{
+								alertify.error('Gagal menghapus');
+							}
+							
+						},'json');
+				}
+			},function(){});		
+		});
+			//tooltip
+			$('body').tooltip({
+				selector: '[rel=tooltip]'
+			});
 
       //form
       $('#form-merk').submit(function(e){
