@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests\MerkRequest;
 use App\MerkModel;
@@ -24,9 +24,20 @@ class MerkController extends Controller
     public function store(MerkRequest $request)
     {
     	$stat=0;
-    	$action = MerkModel::create([
-    			'merek'=>$request->input('merek')
-    		]);
+        $id=$request->input('id');
+        $action ='';
+        if($id>0)
+        {
+            $model=MerkModel::find($id);
+            $model->merek = $request->input('merek');
+            $action=$model->save();
+        }else
+        {
+            $action = MerkModel::create([
+                'merek'=>$request->input('merek')
+            ]);
+        }
+    	
         if($action){
             $stat=1;
         }
@@ -37,5 +48,16 @@ class MerkController extends Controller
     {
         $getData = MerkModel::select(['id','merek']);
         return Datatables::of($getData)->make(true);
+    }
+
+    public function delete(Request $request)
+    {
+        $stat=0;
+        $term = $request->get('id');
+        if((MerkModel::destroy($term)))
+        {
+            $stat=1;
+        }
+        return response()->json(['return'=>$stat]);
     }
 }

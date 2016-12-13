@@ -4,6 +4,8 @@
   <!-- Datatables -->
  <link href="{{ URL::asset('vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
  <link href="{{ URL::asset('vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ URL::asset('vendors/alertify/css/alertify.min.css')}}" rel="stylesheet">
+  <link href="{{ URL::asset('vendors/alertify/css/default.min.css')}}" rel="stylesheet">
  @endsection
  @section('content')
  <div class="right_col" role="main">
@@ -42,7 +44,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Merk Jam Tangan 
                         </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                         <input type="hidden" name="id" id="id-merk" />
+                         <input type="hidden" name="id" id="id-merk" value="0" />
                           <input class="form-control col-md-7 col-xs-12"  id="merk" name="merek"  required="required" type="text">
                         </div>
                       </div>
@@ -95,6 +97,7 @@
     <script src="{{ URL::asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{ URL::asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{ URL::asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
+    <script src="{{ URL::asset('vendors/alertify/js/alertify.min.js')}}"></script>
 
 <script src="{{ URL::asset('vendor/jsvalidation/js/jsvalidation.min.js')}}" type='text/javascript'></script>
 {!! JsValidator::formRequest('App\Http\Requests\MerkRequest', '#form-merk') !!}
@@ -148,7 +151,7 @@
 			var data = gentable.row($(this).parents('tr')).data();
 			alertify.confirm("Konfirmasi","Anda Yakin Ingin menghapus data?", function (e) {
 				if (e) {
-					$.post("/home/deletekelas",{'id':data.idkelas,_token:$('#token').val()},function(data,status){
+					$.post("/merk/delete",{'id':data.id,_token:$('input[name=_token]').val()},function(data,status){
 							if(parseInt(data.return)==1){
 								alertify.success('Data berhasil dihapus');
 								gentable.ajax.reload();
@@ -190,7 +193,8 @@
                   setTimeout(function() {
                     notify.update({'type': 'success', 'message': '<strong>Success</strong> saved!', 'progress': 25});
                   }, 2000);
-                  
+                  gentable.ajax.reload();
+                  $('#id-merk').val(0);
               }
             },
             error:function(xhr,status,errormessage)
