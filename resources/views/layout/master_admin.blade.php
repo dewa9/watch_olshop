@@ -17,7 +17,7 @@
     
     @yield('css')
     <!-- Custom Theme Style -->
-    <link href="{{ URL::asset('vendors/build/css/custom.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('vendors/build/css/custom.min.css')}}" rel="stylesheet">
     <style>
         [data-notify="progressbar"] {
           margin-bottom: 0px;
@@ -68,7 +68,7 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Product <span class="fa fa-chevron-down"></span></a>
                        <ul class="nav child_menu">
-                      <li><a href="#">Add</a></li>
+                      <li><a href="{{url('/product/addproduct')}}">Add</a></li>
                       <li><a href="#">Show</a></li>
                     </ul>
 

@@ -23,7 +23,7 @@ Route::get('/merk/addmerk','MerkController@add');
 Route::post('/merk/storemerk','MerkController@store');
 Route::get('/merk/getDataMerk','MerkController@show');
 Route::post('/merk/delete','MerkController@delete');
-
+//product
 Route::get('/product/addproduct','ProductController@add');
 Route::post('/product/storeproduct','ProductController@store');
 Route::get('/product/editproduct/{id}','ProductController@edit');
