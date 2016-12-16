@@ -28,9 +28,6 @@ class ProductRequest extends FormRequest
             'id_merek' =>'required',
             'nama_produk'=>'required',
             'harga' => 'required|numeric',
-            'gambar1'=>'required',
-            'gambar2'=>'required',
-            'gambar3'=>'required',
             'deskripsi'=>'required'
 
         ];
@@ -46,9 +43,6 @@ class ProductRequest extends FormRequest
         'nama_produk.required'=>'mohon diisi!',
         'harga.required'=>'mohon diisi!',
         'harga.numeric'=>'harus angka!',
-        'gambar1.required'=>'mohon diisi!',
-        'gambar2.required'=>'mohon diisi!',
-        'gambar3.required'=>'mohon diisi!',
         'deskripsi.required'=>'mohon diisi!'
         ];
     }

@@ -19,13 +19,12 @@ class ProductController extends Controller
        public function store(ProductRequest $request)
        {
        		$stat=0;
+          $id=0;
+          
        		$action = ProductModel::create(['kode_produk'=>$request->input('kode_produk'),
        			'id_merek'=>$request->input('id_merek'),
        			'nama_produk'=>$request->input('nama_produk'),
        			'harga'=>$request->input('harga'),
-       			'gambar1'=>$request->input('gambar1'),
-       			'gambar2'=>$request->input('gambar1'),
-       			'gambar3'=>$request->input('gambar1'),
        			'deskripsi'=>$request->input('deskripsi')
             ]);
             if($action)
@@ -33,5 +32,6 @@ class ProductController extends Controller
             	$stat=1;
             	$id=$action->id;
             }
+            return response()->json(['return'=>$stat,'id'=>$id]);
        }
 }
