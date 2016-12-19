@@ -13,7 +13,10 @@ class ProductController extends Controller
     public function add()
     {
     	$arrmerk = MerkModel::pluck('merek', 'id');
-    	return view('product.add',['arrmerk'=>$arrmerk]);
+		$arrgender = array();
+		$arrgender['1']='Male';
+		$arrgender['0']='Female';
+    	return view('product.add',['arrmerk'=>$arrmerk,'arrgender'=>$arrgender]);
     }
 
        public function store(ProductRequest $request)

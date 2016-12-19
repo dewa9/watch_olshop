@@ -159,17 +159,18 @@
                         <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Gender
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div class="input-group">
-
-                        </div>
+                          {!! Form::select('gender', $arrgender, 'Pilih', array('class' => 'form-control')) !!}
                       </div>
                     </div>
 
                       <div class="item form-group">
                         <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Garansi Produk
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="garansi_produk"  required="required" type="text">
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+						<div class="input-group">
+                            <input class="form-control col-md-7 col-xs-12" name="garansi_produk"  required="required" type="number">
+							<div class="input-group-addon"><span>Tahun</span></div>
+						</div>
                        
                       </div>
                     </div>
@@ -178,7 +179,10 @@
                         <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Case Diameter
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="case_diameter"  required="required" type="text">
+						<div class="input-group">
+                            <input class="form-control col-md-7 col-xs-12" name="case_diameter"  required="required" type="number">
+							<div class="input-group-addon">mm</div>
+						</div>
                         </div>
                       </div>
 
@@ -186,7 +190,10 @@
                         <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Case Thickness
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="case_thickness"  required="required" type="text">
+						<div class="input-group">
+                            <input class="form-control col-md-7 col-xs-12" name="case_thickness"  required="required" type="number">
+						<div class="input-group-addon">mm</div>
+						</div>
                         </div>
                       </div>
 
@@ -194,7 +201,10 @@
                         <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Water Resistant
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="input-group">
                             <input class="form-control col-md-7 col-xs-12" name="water_resistant"  required="required" type="text">
+							<div class="input-group-addon">m</div>
+						</div>
                         </div>
                       </div>
 
