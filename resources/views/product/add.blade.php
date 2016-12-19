@@ -43,14 +43,15 @@
                             <span class="step_no">3</span>
                             <span class="step_descr">
                                               Step 3<br />
-                                              <small>Selesai</small>
+                                              <small>Gambar</small>
                                           </span>
                           </a>
                         </li>
                       </ul>
                     <br />
                     <div id="step-1" style="display:none;">
-                    <form action="{{url('/product/storeproduct')}}" method="post" class="form-horizontal form-label-left" id="form-product">
+                    <form  action="{{url('/product/storeproduct')}}" method="post" class="form-horizontal form-label-left" 
+                    id="form-product">
                       
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <div class="item form-group">
@@ -88,48 +89,14 @@
                         </div>
                       </div>
 
-                      <!--div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" maxlength="50">Gambar
-                        </label>
-                        <div class="col-md-5 col-sm-5 col-xs-12">
-                          <div class="input-group">
-                             <span class="input-group-addon">Gambar I</span>
-                              <input class="form-control col-md-7 col-xs-12" name="gambar1"  required="required" type="file">
-                             
-                          </div>
-                        </div>
-                      </div>
-
-                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" maxlength="50">
-                        </label>
-                        <div class="col-md-5 col-sm-5 col-xs-12">
-                          <div class="input-group">
-                             <span class="input-group-addon">Gambar II</span>
-                              <input class="form-control col-md-7 col-xs-12" name="gambar2"  required="required" type="file">
-                            
-                          </div>
-                        </div>
-                      </div>
-
-                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" maxlength="50">
-                        </label>
-                        <div class="col-md-5 col-sm-5 col-xs-12">
-                          <div class="input-group">
-                             
-                             <span class="input-group-addon">Gambar III</span>
-                             <input class="form-control col-md-7 col-xs-12" name="gambar3"  required="required" type="file">
-                          </div>
-                        </div>
-                      </div-->
                        <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" maxlength="50">Deskripsi
                         </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                            <textarea class="form-control col-md-7 col-xs-12" name="deskripsi"  required="required"></textarea>
+                            <textarea class="form-control col-md-7 col-xs-12" name="deskripsi"></textarea>
                         </div>
                       </div>
+                       
 
                       <div class="ln_solid"></div>
                       <div class="form-group">
@@ -140,8 +107,8 @@
                     </form>
                   </div>
                   <!--step ke dua-->
-                  <div id="step-2"  >
-                  <form action="{{url('/product/storespesification')}}" method="post" class="form-horizontal " id="form-spesifikasi">
+                  <div id="step-2" style="display:none;">
+                  <form action="{{url('/spesification/storespesification')}}" method="post" class="form-horizontal form-label-left" id="form-spek">
                     <br/>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -160,7 +127,7 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="input-group">
-
+                             {!! Form::select('gender', $arrgender, 'Pilih', array('class' => 'form-control')) !!}
                         </div>
                       </div>
                     </div>
@@ -365,13 +332,73 @@
                      
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button id="send-spesifikasi" type="submit" class="btn btn-success">Submit</button>
+                          <button id="send-spek" type="submit" class="btn btn-success">Lanjut</button>
                         </div>
                       </div>
 
                     </form>
                   </div>
 
+                  <!--step ke dua-->
+                  <div id="step-3" style="display:block;">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                    <form entype="multipart/form-data" action="{{url('/product/storeimage')}}" method="post" class="form-horizontal form-label-left" 
+                    id="form-image">
+                      
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <input type="hidden" id="produk-id" name="id-produks" value="2">
+                      
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" maxlength="50">Gambar
+                        </label>
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                          <div class="input-group">
+                             <span class="input-group-addon">Gambar I</span>
+                              <input class="form-control col-md-7 col-xs-12 image_product" name="gambar1"  required="required" type="file">
+                             
+                          </div>
+                        </div>
+                      </div>
+
+                       <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" maxlength="50">
+                        </label>
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                          <div class="input-group">
+                             <span class="input-group-addon">Gambar II</span>
+                              <input class="form-control col-md-7 col-xs-12 image_product" name="gambar2"  required="required" type="file">
+                          </div>
+                        </div>
+                      </div>
+
+                       <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" maxlength="50">
+                        </label>
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                          <div class="input-group">
+                             
+                             <span class="input-group-addon">Gambar III</span>
+                             <input class="form-control col-md-7 col-xs-12 image_product" name="gambar3"  required="required" type="file">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button id="send-iamge" type="submit" class="btn btn-success">Selesai</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                       <div class="">
+                        <img class=" img-rounded" style="max-width: 70%;" id="image_show" src="{{ URL::asset('images/user.png')}}" alt="profil-picture" >
+                       
+                        </div>
+                  </div>
+                  </div>
                   </div>
                   </div>
                 </div>
@@ -386,8 +413,21 @@
  <!-- jQuery Smart Wizard -->
     <script src="{{ URL::asset('vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\ProductRequest', '#form-product') !!}
-<script type="text/javascript">
+{!! JsValidator::formRequest('App\Http\Requests\SpesificationRequest', '#form-spek') !!}
+{!! JsValidator::formRequest('App\Http\Requests\ProductImagerequest', '#form-image') !!}
 
+<script type="text/javascript">
+ function readURL(input) {
+        var a=$(input)[0].files;
+        
+        if (a) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image_show').attr('src', e.target.result);
+            }
+            reader.readAsDataURL($(input)[0].files[0]);
+        }
+    }
   var notify=null
   $(document).ready(function(){
       $('#step2,#step3').addClass("disabled");
@@ -421,6 +461,7 @@
                   $('#step2').removeClass('disabled');
                   $('#step-1').hide();
                   $('#step-2').show();
+                  $('#id-produk').val(data.id)
               }
             },
             error:function(xhr,status,errormessage)
@@ -438,16 +479,16 @@
           });
       });
 
- $('#form-spesifikasi').submit(function(e){
+ $('#form-spek').submit(function(e){
           e.preventDefault();
-          $('#send-product').button('loading');
-          var _datasend=$(this).serialize();
-          $('#form-product input').attr("disabled", "disabled");
+          $('#send-spek').button('loading');
+          var _datasendspek=$(this).serialize();
+          $('#form-spek input').attr("disabled", "disabled");
           
           $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
-            data: _datasend,
+            data: _datasendspek,
             dataType: 'json',
             beforeSend:function(){
               notify=$.notify('<strong>Sending</strong> ...', {
@@ -458,14 +499,15 @@
             success:function(data){
               if(parseInt(data.return)==1)
               {
-                $('#form-product').trigger('reset');
+                $('#form-spek').trigger('reset');
                   setTimeout(function() {
                     notify.update({'type': 'success', 'message': '<strong>Success</strong> saved!', 'progress': 25});
                   }, 2000);
-                  $('#step1').addClass('done');
-                  $('#step2').removeClass('disabled');
-                  $('#step-1').hide();
-                  $('#step-2').show();
+                  $('#step2').addClass('done');
+                  $('#step3').removeClass('disabled');
+                  $('#step-2').hide();
+                  $('#step-3').show();
+                  $('#produk-id').val(data.id);
               }
             },
             error:function(xhr,status,errormessage)
@@ -476,12 +518,18 @@
             },
             complete:function()
             {
-              $('#form-product input').removeAttr('disabled').trigger('reset');
+              $('#form-spek input').removeAttr('disabled').trigger('reset');
               $('.form-group').removeClass('has-success');
-              $('#send-product').button('reset');
+              $('#send-spek').button('reset');
             }
           });
       });
+
+ //image
+  $('.image_product').change(function(){
+            readURL($(this));
+           
+        });
   });
 </script>
 @endsection
