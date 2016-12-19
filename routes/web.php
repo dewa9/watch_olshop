@@ -29,7 +29,12 @@ Route::post('/product/storeproduct','ProductController@store');
 Route::get('/product/editproduct/{id}','ProductController@edit');
 Route::post('/product/updateproduct','ProductController@update');
 Route::get('/product/showproduct','ProductController@show');
+Route::post('/product/storeimage','ProductController@storeImage');
 Route::get('/product/getDataProduct','ProductController@getDataProduct');
 Route::post('/product/delete','ProductController@delete');
+
+//spesification
+
+Route::post('/spesification/storespesification','SpesificationController@store');
 
 
