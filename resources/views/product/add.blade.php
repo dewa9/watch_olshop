@@ -356,8 +356,7 @@
                   <!--step ke dua-->
                   <div id="step-3" style="display:block;">
                     <div class="col-md-8 col-sm-8 col-xs-8">
-                    <form entype="multipart/form-data" action="{{url('/product/storeimage')}}" method="post" class="form-horizontal form-label-left" 
-                    id="form-image">
+                    <form entype="multipart/form-data" action="{{url('/product/storeimage')}}" method="post" class="form-horizontal form-label-left" id="form-image">
                       
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <input type="hidden" id="produk-id" name="id-produks" value="2">
@@ -369,8 +368,7 @@
                         <div class="col-md-5 col-sm-5 col-xs-12">
                           <div class="input-group">
                              <span class="input-group-addon">Gambar I</span>
-                              <input class="form-control col-md-7 col-xs-12 image_product" name="gambar1"  required="required" type="file">
-                             
+                             {!! Form::file('gambar1',array('class'=>'form-control col-md-7 col-xs-12 image_product')) !!}
                           </div>
                         </div>
                       </div>
@@ -381,7 +379,8 @@
                         <div class="col-md-5 col-sm-5 col-xs-12">
                           <div class="input-group">
                              <span class="input-group-addon">Gambar II</span>
-                              <input class="form-control col-md-7 col-xs-12 image_product" name="gambar2"  required="required" type="file">
+                              
+							  {!! Form::file('gambar2',array('class'=>'form-control col-md-7 col-xs-12 image_product')) !!}
                           </div>
                         </div>
                       </div>
@@ -393,7 +392,8 @@
                           <div class="input-group">
                              
                              <span class="input-group-addon">Gambar III</span>
-                             <input class="form-control col-md-7 col-xs-12 image_product" name="gambar3"  required="required" type="file">
+							 
+							  {!! Form::file('gambar3',array('class'=>'form-control col-md-7 col-xs-12 image_product')) !!}
                           </div>
                         </div>
                       </div>

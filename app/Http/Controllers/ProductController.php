@@ -8,6 +8,7 @@ use App\Http\Requests\ProductImagerequest;
 use App\ProductModel;
 use App\MerkModel;
 use Datatables;
+use App\Http\Requests;
 class ProductController extends Controller
 {
     //
@@ -40,7 +41,7 @@ class ProductController extends Controller
             return response()->json(['return'=>$stat,'id'=>$id]);
        }
 
-       public function storeImage(ProductImageRequest $request)
+       public function storeImage(Request $request)
        {
           $id = $request->input('id-produks');
           $models = ProductModel::where('id',$id)->first();
