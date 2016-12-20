@@ -49,7 +49,7 @@
                         </li>
                       </ul>
                     <br />
-                    <div id="step-1" style="display:none;">
+                    <div id="step-1">
                     <form  action="{{url('/product/storeproduct')}}" method="post" class="form-horizontal form-label-left" 
                     id="form-product">
                       
@@ -354,12 +354,12 @@
                   </div>
 
                   <!--step ke dua-->
-                  <div id="step-3" style="display:block;">
+                  <div id="step-3" style="display:none;">
                     <div class="col-md-8 col-sm-8 col-xs-8">
-                    <form entype="multipart/form-data" action="{{url('/product/storeimage')}}" method="post" class="form-horizontal form-label-left" id="form-image">
+                    <form  action="{{url('/product/storeimage')}}" method="post" enctype='multipart/form-data' class="form-horizontal form-label-left" id="form-image">
                       
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      <input type="hidden" id="produk-id" name="id-produks" value="2">
+                      <input type="hidden" id="produk-id" name="id-produks" value="0">
                       
 
                       <div class="item form-group">

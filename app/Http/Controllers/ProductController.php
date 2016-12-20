@@ -8,7 +8,7 @@ use App\Http\Requests\ProductImagerequest;
 use App\ProductModel;
 use App\MerkModel;
 use Datatables;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 class ProductController extends Controller
 {
     //
@@ -41,22 +41,22 @@ class ProductController extends Controller
             return response()->json(['return'=>$stat,'id'=>$id]);
        }
 
-       public function storeImage(Request $request)
+       public function storeImage(ProductImagerequest $request)
        {
           $id = $request->input('id-produks');
           $models = ProductModel::where('id',$id)->first();
 
-          $imgpath1 = $request->file('gambar1');
-          $img_data1 = file_get_contents($imgpath1);
-          $first_base64 = base64_encode($img_data1);
+          $first_imgpath = $request->file('gambar1');
+          $first_img_data = file_get_contents($first_imgpath);
+          $first_base64 = base64_encode($first_img_data);
 
-          $imgpath2 = $request->file('gambar2');
-          $img_data2 = file_get_contents($imgpath2);
-          $second_base64 = base64_encode($img_data2);
+          $second_imgpath = $request->file('gambar2');
+          $second_img_data = file_get_contents($second_imgpath);
+          $second_base64 = base64_encode($second_img_data);
 
-          $imgpath3 = $request->file('gambar3');
-          $img_data3 = file_get_contents($imgpath3);
-          $third_base64 = base64_encode($img_data3);
+          $third_imgpath = $request->file('gambar3');
+          $third_img_data = file_get_contents($third_imgpath);
+          $third_base64 = base64_encode($third_img_data);
 
           $models->gambar1 = $first_base64;
           $models->gambar2 = $second_base64;
