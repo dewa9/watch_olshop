@@ -66,4 +66,10 @@ class ProductController extends Controller
             return Redirect::back();
           }
        }
+
+       public function getDataProduct()
+       {
+          $getData = ProductModel::with(['relasi_merek'])->select('id','kode_produk','nama_produk','harga');
+          return Datatables::of($getData)->make(true);
+       }
 }

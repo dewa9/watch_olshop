@@ -13,4 +13,9 @@ class ProductModel extends Model
     	'id_merek','nama_produk',
     	'harga','gambar1','gambar2',
     	'gambar3','deskripsi');
+
+    public function relasi_merek()
+    {
+    	 return $this->hasMany('App\MerkModel','id','id_merek');
+    }
 }
