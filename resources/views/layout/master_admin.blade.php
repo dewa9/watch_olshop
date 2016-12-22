@@ -69,7 +69,7 @@
                   <li><a><i class="fa fa-table"></i> Product <span class="fa fa-chevron-down"></span></a>
                        <ul class="nav child_menu">
                       <li><a href="{{url('/product/addproduct')}}">Add</a></li>
-                      <li><a href="#">Show</a></li>
+                      <li><a href="{{url('/product/showproduct')}}">Show</a></li>
                     </ul>
 
                   </li>

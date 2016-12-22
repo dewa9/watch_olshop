@@ -1,4 +1,4 @@
-@extends('layouts.master_admin')
+@extends('layout.master_admin')
 
 @section('title','Product')
 @section('css')
@@ -9,6 +9,13 @@
   <link href="{{ URL::asset('vendors/alertify/css/default.min.css')}}" rel="stylesheet">
 @endsection
 @section('content')
+ <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
 <div class="x_panel">
   <div class="x_title">
       <h2>Data Product</h2>
@@ -30,8 +37,8 @@
 	   </colgroup>
 	<thead>
         <tr>
-          <th>Kode</th>
           <th>Merk</th>
+          <th>Kode</th>
           <th>Nama</th>
           <th>Harga</th>
           <th></th>
@@ -41,6 +48,10 @@
 
 <!--endtable-->
   </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 @endsection
@@ -57,12 +68,13 @@
 		$(document).ready(function(){
 			gentable = $('#datatable-product').DataTable({
           processing: true,
+          order:[[0,'asc']],
           ajax: '{{url("/product/getDataProduct")}}',
           columns: [
+              {data: 'relasi_merek[0].merek', name: 'relasi_merek[0].merek'},
               {data: 'kode_produk', name: 'kode_produk'},
-              {data: 'merk', name: 'merk'},
               {data: 'nama_produk', name: 'nama_produk'},
-              {data: 'harga', name: 'harga'},
+              {data: 'harga', name: 'harga',"className": "text-right"},
               {
               "className": "action text-center",
               "data": null,
@@ -75,23 +87,36 @@
               "<span class=\"sr-only\">Action</span></button>" +
               "</div>"
             }
-          ]
+          ],
+           drawCallback: function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+
+            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
+              if ( last !== group ) {
+                $(rows).eq( i ).before(
+                  '<tr class="group"><td colspan="3">'+group+'</td></tr>'
+                );
+                last = group;
+              }
+            });
+           
+             
+        },
+
+        columnDefs: [
+            { "visible": false, "targets": 0 }
+          ],
       });
 
-     /* var sbody = $('#datatable-product tbody');
-      sbody.on('click','.edit',function(){
-        var data = gentable.row($(this).parents('tr')).data();
-       if(data===undefined){
-          data = gentable.row($(this).closest('tr').prev()).data();
-        }
-        window.location.href='/home/editmahasiswa/'+data.nim;
-      }).
-      on('click','.list', function(){
+     var sbody = $('#datatable-product tbody');
+      sbody.on('click','.list', function(){
         var data = gentable.row($(this).parents('tr')).data();
         if(data===undefined){
           data = gentable.row($(this).closest('tr').prev()).data();
         }
-        window.location.href='/home/detailmahasiswa/'+data.nim;
+        window.location.href='/product/detail/'+data.id;
       }).
       on('click','.delete',function(){
         var data = gentable.row($(this).parents('tr')).data();
@@ -100,7 +125,7 @@
         }
         alertify.confirm("Konfirmasi","Anda Yakin Ingin menghapus data?", function (e) {
           if (e) {
-            $.get("/home/deletemahasiswa/"+data.nim, function(data, status){
+            $.get("/product/delete/"+data.id, function(data, status){
               //alert(data)
                 if(parseInt(data.return)==1){
                   alertify.success('Data berhasil dihapus');
@@ -118,7 +143,7 @@
         selector: '[rel=tooltip]'
       });
 
-		});*/
+		});
 
    </script>
 @endsection

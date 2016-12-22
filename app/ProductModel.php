@@ -18,4 +18,9 @@ class ProductModel extends Model
     {
     	 return $this->hasMany('App\MerkModel','id','id_merek');
     }
+
+    public function relasi_spesifikasi()
+    {
+        return $this->hasMany('App\SpesificationModel','id_produk','id');
+    }
 }

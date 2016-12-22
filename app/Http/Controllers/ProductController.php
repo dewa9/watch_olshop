@@ -69,7 +69,31 @@ class ProductController extends Controller
 
        public function getDataProduct()
        {
-          $getData = ProductModel::with(['relasi_merek'])->select('id','kode_produk','nama_produk','harga');
+          $getData = ProductModel::with(['relasi_merek' => function($query){
+            $query->select();
+          }])->select('id','id_merek','nama_produk','harga','kode_produk');
           return Datatables::of($getData)->make(true);
+       }
+
+       public function show()
+       {
+          return view('product.show');
+       }
+
+       public function delete($id)
+       {
+            $statreturn = 0;
+            $model = new ProductModel;
+            $data  = $model->find($id);
+            $destroy = $data->delete();
+            if($destroy){
+              $statreturn = 1;
+            }
+            return response()->json(['return' => $statreturn]);
+       }
+
+       public function detail($id){
+         $getData = ProductModel::with(['relasi_merek','relasi_spesifikasi'])->find($id)->get();
+         return view('product.detail', ['datadetail'=>$getData]);
        }
 }
