@@ -58,6 +58,18 @@
                   </div>
                   <div class="col-md-4 col-sm-4 col-xs-4">
                     <img class="img-rounded" id="image-product" style="max-width: 100%;" src="data:image/jpg;base64,{{$details->gambar1 }}" alt="produk">
+					<br/>
+					<!--img small-->
+					<a href="#" class="klik-image">
+					<img class="img-rounded"  style="max-width: 10%;" src="data:image/jpg;base64,{{$details->gambar1 }}" alt="produk-small">
+					</a>
+					<a href="#" class="klik-image">
+					<img class="img-rounded"  style="max-width: 10%;" src="data:image/jpg;base64,{{$details->gambar2 }}" alt="produk-small">
+					</a>
+					<a href="#" class="klik-image">
+					<img class="img-rounded"  style="max-width: 10%;" src="data:image/jpg;base64,{{$details->gambar3 }}" alt="produk-small">
+					</a>
+					<!-- -->
                   </div>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                       <table class="table table-hover">
@@ -158,7 +170,13 @@
  <script src="{{ URL::asset('js/blowup.min.js')}}"></script>
  <script type="text/javascript">
     $(document).ready(function(){
-         $("#image-product").blowup();
+         
+		 $('.klik-image').click(function(){
+			 var a=$(this).find('img').attr('src');
+			 $('#image-product').removeAttr('src').attr('src',a);
+			 $("#image-product").blowup();
+		 });
+		 $("#image-product").blowup();
     });
  </script>
 @endsection
