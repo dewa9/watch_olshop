@@ -1,11 +1,14 @@
  @extends('layout.master_admin')
  @section('title','Product')
+ @section('css')
+<link href="{{ URL::asset('css/bootstrap-editable.css')}}" rel="stylesheet">
+ @endsection
  @section('content')
  <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Data Siswa</h3>
+                <h3>Detail Produk</h3>
               </div>
 
               <div class="title_right">
@@ -19,14 +22,18 @@
                 </div>
               </div>
             </div>
-            <div class="clearfix"></div>
+             <div class="clearfix">
+                
+            </div>
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <h2><small>Detail Produk</small></h2>
                     
-                    <div class="clearfix"></div>
+                    <div class="clearfix">
+                      <a href="#" id="editable-click" class="btn btn-success pull-right"><i class="fa fa-edit"></i> Edit</a>
+                    </div>
                   </div>
                   <div class="x_content">
                     <br />
@@ -36,21 +43,46 @@
                         <table class="table table-hover">
                       <thead>
                       <tr>
-                        <th>Merk </th><th>{{$details->relasi_merek[0]->merek}}</th>
-                        
+                        <th>Merk </th>
+                        <th>
+                            <a href="#" class="editable-produk" id="id_merek" data-type="select" data-pk="{{$details->id}}" 
+                              data-url="/product/update" data-title="Merk">
+                              {{$details->relasi_merek[0]->merek}}
+                            </a>
+                        </th>
                       </tr>
                       <tr>
-                        <th>Model </th><th>{{$details->kode_produk}}</th>
+                        <th>Model </th><th><a href="#" class="editable-produk" id="kode_produk" data-type="text" data-pk="{{$details->id}}" 
+                              data-url="/product/update" data-title="Kode Produk">
+                              {{$details->kode_produk}}
+                            </a>
+                            </th>
                       </tr>
                       <tr>
-                        <th>Nama Produk </th><th>{{$details->nama_produk}}</th>
+                        <th>Nama Produk </th>
+                        <th>
+                        <a href="#" class="editable-produk" id="nama_produk" data-type="text" data-pk="{{$details->id}}" 
+                              data-url="/product/update" data-title="Nama Produk">
+                              {{$details->nama_produk}}
+                            </a>
+                          </th>
                       </tr>
                       
                       <tr>
-                        <th>Harga </th><th>{{$details->harga}}</th>
+                        <th>Harga </th><th>
+                        <a href="#" class="editable-produk" id="harga" data-type="number" data-pk="{{$details->id}}" 
+                              data-url="/product/update" data-title="Harga">
+                              {{$details->harga}}
+
+                            </a>
+                          </th>
                       </tr>
                       <tr>
-                        <th>Deskripsi </th><th>{{$details->deskripsi}}</th>
+                        <th>Deskripsi </th><th><a href="#" class="editable-produk" id="deskripsi" data-type="text" 
+                        data-pk="{{$details->id}}" data-url="/product/update" data-title="Deskripsi">
+                              {{$details->deskripsi}}
+                            </a>
+                          </th>
                       </tr>
                       
                       </thead>
@@ -75,7 +107,13 @@
                         @endif
                       </tr>
                       <tr>
-                        <th>Movement </th><th>{{$details->relasi_spesifikasi[0]->movement}}</th>
+                        <th>Movement </th>
+                          <th>
+                            <a href="#" class="editable-spesification" id="movement" data-type="text" data-pk="{{$details->relasi_spesifikasi[0]->id}}" 
+                              data-url="/spesification/update" data-title="Movement">
+                          {{$details->relasi_spesifikasi[0]->movement}}</a>
+
+                          </th>
                       </tr>
                        <tr>
                         <th>Case Diameter </th><th>{{$details->relasi_spesifikasi[0]->movement}}</th>
@@ -155,10 +193,40 @@
         </div>
 @endsection
 @section('scripts')
+ <script src="{{ URL::asset('js/bootstrap-editable.min.js')}}"></script>
  <script src="{{ URL::asset('js/blowup.min.js')}}"></script>
+ <meta name="csrf-token" content="{{ csrf_token() }}" />
  <script type="text/javascript">
+ var _fnmereksource = function()
+ {
+  var _arr =[];
+  var _urlsource = '/merek/populate_select';
+  $.ajax({
+      type:'GET',
+      async:true,
+      url:_urlsource,
+      dataType:'json',
+      success:function(data){
+        console.log(data);
+        $('#id_merek').attr('data-source',data);
+      }
+  });
+ }
     $(document).ready(function(){
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
          $("#image-product").blowup();
+
+         //
+         $.fn.editable.defaults.send = "always";
+         $('#editable-click').click(function(){
+            $('.editable-produk,.editable-spesification').editable('toggleDisabled');
+          
+         });
+         _fnmereksource();
     });
  </script>
 @endsection

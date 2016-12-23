@@ -96,4 +96,13 @@ class ProductController extends Controller
          $getData = ProductModel::with(['relasi_merek','relasi_spesifikasi'])->find($id)->get();
          return view('product.detail', ['datadetail'=>$getData]);
        }
+
+       public function update(Request $request)
+       {
+          $model = ProductModel::findOrFail($request->get('pk'));
+          $name = $request->get('name');
+          $value =$request->get('value');
+          $model->$name = $value;
+          $model->save();
+       }
 }

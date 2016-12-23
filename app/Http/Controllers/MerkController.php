@@ -60,4 +60,20 @@ class MerkController extends Controller
         }
         return response()->json(['return'=>$stat]);
     }
+
+    public function populateSelect(){
+        $getdata= MerkModel::all();
+        $arrsource=array();
+        foreach ($getdata as $key => $value) {
+            # code...
+            $arrtemp=array(
+                'value'=>$value->id,
+                'text'=>$value->merek
+                );
+            array_push($arrsource, $arrtemp);
+        }
+        $arrsource=json_encode($arrsource);
+        return response()->json($arrsource);
+    }
+    
 }

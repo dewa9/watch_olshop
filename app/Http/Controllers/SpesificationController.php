@@ -50,4 +50,14 @@ class SpesificationController extends Controller
             }
             return response()->json(['return'=>$stat,'id'=>$request->input('id_produk')]);
     }
+
+    public function update(Request $request)
+    {
+
+          $model = SpesificationModel::findOrFail($request->get('pk'));
+          $name = $request->get('name');
+          $value =$request->get('value');
+          $model->$name = $value;
+          $model->save();
+    }
 }
