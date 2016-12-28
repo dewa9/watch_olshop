@@ -31,7 +31,6 @@ class SpesificationController extends Controller
        			'calendar'=>$request->input('calendar'),
        			'driving_system'=>$request->input('driving_system'),
        			'caliber_number'=>$request->input('caliber_number'),
-       			'case'=>$request->input('case'),
        			'case_coating'=>$request->input('case_coating'),
        			'lumibright'=>$request->input('lumibright'),
        			'accuracy'=>$request->input('accuracy'),
@@ -39,7 +38,6 @@ class SpesificationController extends Controller
        			'luminious_lumibrite'=>$request->input('luminious_lumibrite'),
        			'movement'=>$request->input('movement'),
        			'dial_color'=>$request->input('dial_color'),
-       			'bracelet'=>$request->input('bracelet'),
        			'features'=>$request->input('features'),
        			'weight_after_packing'=>$request->input('weight_after_packing'),
        			'inside_box'=>$request->input('inside_box'),
@@ -49,5 +47,15 @@ class SpesificationController extends Controller
             	$stat=1;
             }
             return response()->json(['return'=>$stat,'id'=>$request->input('id_produk')]);
+    }
+
+    public function update(Request $request)
+    {
+
+          $model = SpesificationModel::findOrFail($request->get('pk'));
+          $name = $request->get('name');
+          $value =$request->get('value');
+          $model->$name = $value;
+          $model->save();
     }
 }

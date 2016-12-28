@@ -23,11 +23,12 @@ Route::get('/merk/addmerk','MerkController@add');
 Route::post('/merk/storemerk','MerkController@store');
 Route::get('/merk/getDataMerk','MerkController@show');
 Route::post('/merk/delete','MerkController@delete');
+Route::get("/merek/populate_select",'MerkController@populateSelect');
 //product
 Route::get('/product/addproduct','ProductController@add');
 Route::post('/product/storeproduct','ProductController@store');
+Route::post('/product/update','ProductController@update');
 Route::get('/product/detail/{id}','ProductController@detail');
-Route::post('/product/updateproduct','ProductController@update');
 Route::get('/product/showproduct','ProductController@show');
 Route::post('/product/storeimage','ProductController@storeImage');
 Route::get('/product/getDataProduct','ProductController@getDataProduct');
@@ -36,5 +37,5 @@ Route::get('/product/delete/{id}','ProductController@delete');
 //spesification
 
 Route::post('/spesification/storespesification','SpesificationController@store');
-
+Route::post('/spesification/update','SpesificationController@update');
 

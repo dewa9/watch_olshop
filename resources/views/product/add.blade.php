@@ -247,13 +247,6 @@
                         </div>
                       </div>
 
-                       <div class="item form-group">
-                        <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Case
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="case"  required="required" type="text">
-                        </div>
-                      </div>
 
                        <div class="item form-group">
                         <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Case Coating
@@ -310,13 +303,7 @@
                         </div>
                       </div>
 
-                       <div class="item form-group">
-                        <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Bracelet
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="bracelet"  required="required" type="text">
-                        </div>
-                      </div>
+                       
 
                        <div class="item form-group">
                         <label class="control-label col-md-6 col-sm-6 col-xs-12" maxlength="50">Features

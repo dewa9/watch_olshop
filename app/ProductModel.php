@@ -16,11 +16,11 @@ class ProductModel extends Model
 
     public function relasi_merek()
     {
-    	 return $this->hasMany('App\MerkModel','id','id_merek');
+    	 return $this->belongsTo('App\MerkModel','id_merek','id');
     }
 
     public function relasi_spesifikasi()
     {
-        return $this->hasMany('App\SpesificationModel','id_produk','id');
+        return $this->belongsTo('App\SpesificationModel','id','id_produk');
     }
 }
